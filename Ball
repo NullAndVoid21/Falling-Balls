@@ -7,10 +7,10 @@ class Ball {
   float mass;
   
   Ball(){
-    position = new PVector(random(width), 0);
+    position = new PVector(300, 0);
     velocity = new PVector(0,0);
     accel = new PVector(0,0);
-    mass = random(0.5,4);
+    mass = 1;
   }
   
   void applyForce(PVector force) {
