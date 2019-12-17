@@ -1,0 +1,32 @@
+Ball b = new Ball();
+
+void setup(){
+  size(600,400);
+  stroke(255);
+  noFill();
+}
+
+void draw() {
+  
+  background(0);
+  
+  
+  PVector grav = new PVector(0,0.3);
+  grav.mult(b.mass);
+  b.applyForce(grav);
+      
+  //PVector wind = new PVector(0.2,0);
+  //b.applyForce(wind);
+    
+  if (mousePressed){
+    PVector friction = b.velocity.get();
+    friction.normalize();
+    float c = -0.01;
+    friction.mult(c);
+    b.applyForce(friction);
+  }
+    
+  b.update();
+  b.bounce();
+  b.display();
+}
