@@ -1,0 +1,72 @@
+class Ball {
+  
+  PVector position;
+  PVector velocity;
+  PVector accel;
+  
+  float mass;
+  
+  Ball(){
+    position = new PVector(random(width), 0);
+    velocity = new PVector(0,0);
+    accel = new PVector(0,0);
+    mass = random(0.5,4);
+  }
+  
+  void applyForce(PVector force) {
+    
+    PVector f = PVector.div(force,mass);
+    accel.add(f);
+  }
+  
+  void update(){
+    velocity.add(accel);
+    position.add(velocity);
+    accel.mult(0);
+    //velocity.limit(5);
+  }
+  
+  void bounce(){
+    if (position.x > width) {
+      position.x = width;
+      velocity.x *= -1;
+    } else if (position.x < 0) {
+      velocity.x *= -1;
+      position.x = 0;
+    }
+
+    if (position.y > height) {
+      velocity.y *= -1;
+      position.y = height;
+    }
+  }
+  
+  /*
+  void edges(){
+    if (position.x > width){
+      position.x = 0;
+    }
+    
+    else if (position.x < 0){
+      position.x = width;
+    }
+    
+    if (position.y > height){
+      position.y = 0;
+    }
+    
+    else if (position.y < 0){
+      position.y = height;
+    }
+  }
+  */
+    
+  void display(){
+    ellipse(position.x, position.y, mass * 20, mass * 20);
+  }
+  
+  
+  
+  
+  
+}
